@@ -23,4 +23,11 @@ describe("sandbox component should render correctly", ()=> {
         const errorMessage = screen.queryByText("show error")
         expect(errorMessage).not.toBeInTheDocument()
     })
+
+    it("should check if the ul have an amount of items", () => {
+        render(<Sandbox/>)
+
+        const items = screen.getAllByRole("listitem")
+        expect(items).toHaveLength(4)
+    })
 })

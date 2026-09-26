@@ -1,3 +1,5 @@
+import Sandbox from "./final/04-user-interactions/Sandbox";
+
 function App() {
   return (
     <div className='p-8'>
@@ -6,7 +8,9 @@ function App() {
         React Testing Library and Vitest work together to provide a robust
         testing environment.
       </p>
+      <Sandbox/>
     </div>
+
   );
 }
 export default App;
