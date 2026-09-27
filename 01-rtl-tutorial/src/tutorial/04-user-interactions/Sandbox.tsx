@@ -6,11 +6,11 @@ const Sandbox = () => {
   const [isLike, setIsLike] = useState<boolean>(false);
 
   const handleIncrease = () => {
-    setCount(count + 1)
+    setCount(prev => prev + 1)
   }
 
   const handleDecrease = () => {
-    setCount(count - 1)
+    setCount(prev => prev - 1)
   }
 
   const handleToogleLiked = () => {
@@ -19,12 +19,13 @@ const Sandbox = () => {
 
   return <div className="p-8 text-center">
     <h2 className="text-2xl font-bold mb-4">Count: {count}</h2>
-    <button className="bg-blue-500 text-white" onClick={handleIncrease}>increase</button>
     <button className="bg-red-500 text-white" onClick={handleDecrease}>decrease</button>
+    <button className="bg-blue-500 text-white" onClick={handleIncrease}>increase</button>
 
     <div>
       {isLike ? (<button><FaRegHeart/></button>) : (<button><FaHeart/></button>)}
     </div>
+
   </div>;
 };
 export default Sandbox;
