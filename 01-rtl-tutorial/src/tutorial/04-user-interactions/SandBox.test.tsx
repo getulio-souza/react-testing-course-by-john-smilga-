@@ -25,6 +25,16 @@ describe("should render the user interactions when click on buttons", ()=> {
         expect(countZero).toBeInTheDocument()
     })
 
+    it("should selects decrease button", () => {
+        render(<Sandbox/>)
+
+        const decreaseBtn = screen.getByRole("button", {name: "decrease"}) 
+
+        fireEvent.click(decreaseBtn)
+        expect(screen.getByText(/Count: -1/i))
+
+    })
+
     it("shoudd selects increase button", ()=> {
         render(<Sandbox/>)
 
@@ -32,17 +42,22 @@ describe("should render the user interactions when click on buttons", ()=> {
 
         fireEvent.click(increaseBtn)
         expect(screen.getByText(/Count: 1/)).toBeInTheDocument()
-
-        
     })
 
-    it("should selects decrease button", () => {
+    it("should toogle between like and unline button", async ()=> {
         render(<Sandbox/>)
 
-        const decreaseBtn = screen.getByRole("button", {name: "decrease"}) 
+        const user = userEvent.setup()
 
-        fireEvent.click(decreaseBtn)
-        expect(screen.getByText(/Count: 0/i))
+        const unlikeButton = screen.getByRole("button", {name: "unlike button"})
+        expect(unlikeButton).toBeInTheDocument()
 
+        //depois que clica no deslike, ele vira like (troca o estado)
+        await user.click(unlikeButton)
+
+        const likeButton = screen.getByRole("button", {name: "like button"})
+        expect(likeButton).toBeInTheDocument()
     })
+
+    
 })

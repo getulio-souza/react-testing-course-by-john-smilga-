@@ -23,7 +23,9 @@ const Sandbox = () => {
     <button className="bg-red-500 text-white" onClick={handleDecrease}>decrease</button>
 
     <div>
-      {isLike ? (<button><FaRegHeart/></button>) : (<button><FaHeart/></button>)}
+      {isLike ? 
+      (<button onClick={handleToogleLiked} aria-label="like button"><FaRegHeart /></button>) : 
+      (<button onClick={handleToogleLiked} aria-label="unlike button"><FaHeart /></button>)}
     </div>
   </div>;
 };
