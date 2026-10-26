@@ -19,33 +19,41 @@ const Sandbox = () => {
     const {id, value} = e.target
     setSignupInput({...signupInput, [id]: value})
   }
-  const handleSubmit = (e: React.FormEvent<HTMLButtonElement>) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     
     if(!validator.isEmail(signupInput.email)){
-      setError("invalid email!")
+      return setError("invalid email")
     }
 
     if(!validator.isLength(signupInput.password)){
-      setError("Password must be at least 5 characters!")
+      return setError("Password must be at least 5 characters")
     }
 
     if(signupInput.password !== signupInput.confirmPassword){
-      setError('the password does not match')
+      return setError('the password does not match')
     }
 
-    setError("");
+    setError("")
+
     setSignupInput(defaultState)
 
   }
 
   return(
     <div className="container mx-auto max-w-md m-10 p-6 bg-white rounded-lg shadow-md">
-      <form className="space-y-4">
+      <form onSubmit={handleSubmit} noValidate className="space-y-4">
         {/* email */}
         <div className="mb-3">
           <label htmlFor="email" className={labelStyles}>email</label>
-          <input type="email" id="email" value={signupInput.email} onChange={handleChange} className={inputStyles} />
+          <input 
+            type="email" 
+            id="email"
+            name="email" 
+            value={signupInput.email} 
+            onChange={handleChange} 
+            className={inputStyles} 
+          />
         </div>
         {/* password */}
         <div className="mb-3">
@@ -57,7 +65,7 @@ const Sandbox = () => {
           <input type="confirmPassword" id="confirmPassword" value={signupInput.confirmPassword} onChange={handleChange} className={inputStyles} />
         </div>
         {error && (<p className="text-red-500 text-sm">`{error}</p>)}
-        <button onClick={handleSubmit} className={buttonStyles} type="button">Save</button>
+        <button className={buttonStyles} type="submit">submit</button>
       </form>
     </div>
   )
