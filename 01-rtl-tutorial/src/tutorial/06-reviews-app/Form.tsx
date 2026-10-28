@@ -13,7 +13,23 @@ const Form = ({ onSubmit }: ReviewFormProps) => {
     const [textError, setTextError] = useState<string>('')
 
     const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
-        e.preventDefault()
+        e.preventDefault();
+
+        if(text.length >= 10){
+            const newReview = {email, rating, text}
+            onSubmit(newReview)
+            clearFields()
+
+        } else{
+            setTextError("Review must be at least 10 caracters long")
+        }
+    }
+
+    const clearFields = () => {
+        setEmail("")
+        setRating("")
+        setText("")
+        setTextError("")
     }
 
     return (
@@ -22,7 +38,7 @@ const Form = ({ onSubmit }: ReviewFormProps) => {
             {/* email */}
             <div>
                 <label htmlFor="email" className="block mb-2">
-                    E-mail
+                    email
                 </label>
                 <input 
                     type="email" 
@@ -35,6 +51,7 @@ const Form = ({ onSubmit }: ReviewFormProps) => {
                 />
             </div>
 
+            {/* select */}
             <div>
                 <label htmlFor="rating">Rating</label>
                 <select 
@@ -52,6 +69,20 @@ const Form = ({ onSubmit }: ReviewFormProps) => {
                     })}
                 </select>
             </div>
+
+            {/* textarea  */}
+            <textarea 
+                name="text" 
+                id="text" 
+                onChange={(e)=> setText(e.target.value)} 
+                className="w-full border p-2 rounded"
+                required
+                rows={4}
+            />
+            {textError && (<p className="text-red-500 text-sm mt-1 ">{textError}</p>)}
+            <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
+                submit
+            </button>
         </form>
     )
 }

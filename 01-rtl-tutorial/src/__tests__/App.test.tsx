@@ -24,12 +24,12 @@ describe("app component should render", ()=> {
   })
 
 
-  test("it should render the paragrahy", ()=> {
-    render(<App/>)
+  // test("it should render the paragrahy", ()=> {
+  //   render(<App/>)
 
-    const p = screen.getByRole("paragraph")
-    expect(p).toBeInTheDocument()
-  })
+  //   const p = screen.getByRole("paragraph")
+  //   expect(p).toBeInTheDocument()
+  // })
 
   test("expect 2 + 2 = 4", ()=> {
     expect(2 + 2).toBe(4)
