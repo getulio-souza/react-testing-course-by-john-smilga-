@@ -38,7 +38,7 @@ const Form = ({ onSubmit }: ReviewFormProps) => {
             {/* email */}
             <div>
                 <label htmlFor="email" className="block mb-2">
-                    email
+                email
                 </label>
                 <input 
                     type="email" 
