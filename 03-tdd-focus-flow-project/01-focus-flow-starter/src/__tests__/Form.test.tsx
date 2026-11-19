@@ -22,11 +22,30 @@ describe("Form Component", ()=> {
         render(<Form onSubmit={mockOnSubmit}/>)
     })
 
-    test("renders form with empty fields initially", ()=> {
+    
+    test("renders form fields initially empty", ()=> {
+        screen.debug()
         const {titleInput, descriptionInput, categorySelect} = getFormElements()
 
         expect(titleInput).toHaveValue("")
         expect(descriptionInput).toHaveValue("")
         expect(categorySelect).toHaveValue("")
+    })
+
+    test("submit the form with entered values", async ()=> {
+        screen.debug()
+        const {titleInput, descriptionInput, categorySelect, submitButton} = getFormElements();
+
+        await user.type(titleInput, "this is a title")
+        await user.type(descriptionInput, "this is a description typed by me")
+        await user.selectOptions(categorySelect, "urgent")
+
+        await user.click(submitButton)
+
+        expect(mockOnSubmit).toHaveBeenCalledWith({
+            title: 'this is a title',
+            description: 'this is a description typed by me',
+            category: 'urgent'
+        })
     })
 })

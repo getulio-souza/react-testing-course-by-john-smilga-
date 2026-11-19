@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export type ItemCategory = 'urgent'  | 'important' | 'low'  | 'normal' | 'important' 
+export type ItemCategory = 'urgent' | 'important' | 'low'  | 'normal'
 
 export type Item = {
     id: string;
